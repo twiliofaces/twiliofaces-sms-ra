@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.twiliofaces.smsra</groupId>
+	<artifactId>twilio-sms-ra</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<properties>
+		<version.org.jboss.spec.javax.jms.jboss-jms-api_1.1_spec>1.0.0.Final</version.org.jboss.spec.javax.jms.jboss-jms-api_1.1_spec>
+		<version.org.jboss.ironjacamar>1.0.17.Final</version.org.jboss.ironjacamar>
+		<version.org.jboss.ejb3.ext-api>2.0.0</version.org.jboss.ejb3.ext-api>
+		<jboss.spec.version>1.0.1.Final</jboss.spec.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.jboss.ironjacamar</groupId>
+			<artifactId>ironjacamar-core-api</artifactId>
+			<version>${version.org.jboss.ironjacamar}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec.javax.jms</groupId>
+			<artifactId>jboss-jms-api_1.1_spec</artifactId>
+			<version>${version.org.jboss.spec.javax.jms.jboss-jms-api_1.1_spec}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.ejb3</groupId>
+			<artifactId>jboss-ejb3-ext-api</artifactId>
+			<version>${version.org.jboss.ejb3.ext-api}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>6.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.netty</groupId>
+			<artifactId>netty</artifactId>
+			<version>3.2.6.Final</version>
+		</dependency>
+
+
+	</dependencies>
+	<build>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-rar-plugin</artifactId>
+				<version>2.3</version>
+				<executions>
+					<execution>
+						<id>package-as-rar</id>
+						<goals>
+							<goal>rar</goal>
+						</goals>
+						<configuration>
+							<includeJar>true</includeJar>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Definisce la versione di Java per cui compiliamo -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>
+    
