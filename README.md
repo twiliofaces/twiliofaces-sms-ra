@@ -11,4 +11,7 @@ twilio sms resource adapter
 
 
 
+http://grepcode.com/file/repo1.maven.org/maven2/com.mockrunner/mockrunner-j2ee1.3-jdk1.6/0.4/com/mockrunner/mock/jms/MockMapMessage.java
 
+
+https://github.com/hornetq/hornetq/tree/master/integration/hornetq-twitter-integration/src/main/java/org/hornetq/integration/twitter/impl

@@ -15,7 +15,7 @@ public class SMSActivationSpec implements ActivationSpec
    private String host;
    private ResourceAdapter resourceAdapter;
 
-   public void setPort(String host)
+   public void setHost(String host)
    {
       this.host = host;
    }
