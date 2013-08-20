@@ -17,9 +17,6 @@
 					<messagelistener-type>org.twiliofaces.smsra.SMSMessageListener</messagelistener-type>
 					<activationspec>
 						<activationspec-class>org.twiliofaces.smsra.SMSActivationSpec</activationspec-class>
-						<required-config-property>
-							<config-property-name>host</config-property-name>
-						</required-config-property>
 					</activationspec>
 				</messagelistener>
 			</messageadapter>

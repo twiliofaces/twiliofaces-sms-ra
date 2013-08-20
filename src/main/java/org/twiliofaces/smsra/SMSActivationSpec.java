@@ -12,27 +12,11 @@ public class SMSActivationSpec implements ActivationSpec
    private static final Logger logger = Logger
             .getLogger(SMSActivationSpec.class.getName());
 
-   private String host;
    private ResourceAdapter resourceAdapter;
-
-   public void setHost(String host)
-   {
-      this.host = host;
-   }
-
-   public String getHost()
-   {
-      return host;
-   }
 
    public void validate() throws InvalidPropertyException
    {
       logger.info("validating activation spec");
-      if (host == null)
-      {
-         throw new InvalidPropertyException("host property can not be null.");
-      }
-
    }
 
    public ResourceAdapter getResourceAdapter()

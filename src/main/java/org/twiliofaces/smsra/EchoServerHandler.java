@@ -66,8 +66,12 @@ public class EchoServerHandler extends SimpleChannelUpstreamHandler
       try
       {
          SMSMessage smsMessage = SmsUtils.fromString(strBuffer.toString());
-         workManager.scheduleWork(new SMSMessageWorker(smsMessage,
-                  endpointFactory.createEndpoint(null)));
+
+         if (smsMessage != null)
+         {
+            workManager.scheduleWork(new SMSMessageWorker(smsMessage,
+                     endpointFactory.createEndpoint(null)));
+         }
       }
       catch (UnavailableException ue)
       {

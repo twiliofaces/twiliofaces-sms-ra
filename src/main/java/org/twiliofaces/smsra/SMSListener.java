@@ -18,7 +18,6 @@ public class SMSListener implements Work
    private static final Logger logger = Logger.getLogger(SMSListener.class
             .getName());
    private boolean released;
-   private SMSActivationSpec activationSpec;
    private MessageEndpointFactory endpointFactory;
    private WorkManager workManager;
    private ChannelFactory factory = null;
@@ -27,8 +26,7 @@ public class SMSListener implements Work
    public SMSListener(SMSActivationSpec activationSpec,
             MessageEndpointFactory endpointFactory, WorkManager workManager)
    {
-      logger.info("start UDP worker");
-      this.activationSpec = activationSpec;
+      logger.info("start twilio sms worker");
       this.endpointFactory = endpointFactory;
       this.workManager = workManager;
       this.released = false;
@@ -67,12 +65,12 @@ public class SMSListener implements Work
          ServerBootstrap serverBootstrap = new ServerBootstrap(factory);
          EchoServerHandler handler = new EchoServerHandler(endpointFactory, workManager);
          serverBootstrap.getPipeline().addLast("handler", handler);
-         this.serverChannel = serverBootstrap.bind(new LocalAddress(activationSpec.getHost()));
+         this.serverChannel = serverBootstrap.bind(new LocalAddress("0.0.0.0"));
          // Now loop forever, waiting the end
-         logger.info("listening on host " + activationSpec.getHost());
+         logger.info("listening on host 0.0.0.0");
          while (!isReleased())
          {
-
+            Thread.sleep(1000);
          }
 
       }

@@ -45,12 +45,12 @@ public class SMSResourceAdapter implements ResourceAdapter
 
       SMSActivationSpec udpActivationSpec = (SMSActivationSpec) spec;
 
-      Work work = workers.get(udpActivationSpec.getHost());
+      Work work = workers.get(System.getProperty("jboss.qualified.host.name"));
       if (work == null)
       {
          work = new SMSListener(udpActivationSpec, endpointFactory,
                   workManager);
-         workers.put(udpActivationSpec.getHost(), work);
+         workers.put(System.getProperty("jboss.qualified.host.name"), work);
       }
 
       workManager.startWork(work);
@@ -62,9 +62,9 @@ public class SMSResourceAdapter implements ResourceAdapter
       logger.info("endpoint deactivation");
 
       SMSActivationSpec udpActivationSpec = (SMSActivationSpec) spec;
-      if (workers.containsKey(udpActivationSpec.getHost()))
+      if (workers.containsKey(System.getProperty("jboss.qualified.host.name")))
       {
-         workers.get(udpActivationSpec.getHost()).release();
+         workers.get(System.getProperty("jboss.qualified.host.name")).release();
       }
    }
 

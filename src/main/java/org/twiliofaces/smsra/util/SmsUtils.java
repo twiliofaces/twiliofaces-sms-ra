@@ -11,7 +11,8 @@ public class SmsUtils
       for (String part : parts)
       {
          String[] pairs = part.split("=");
-         valorize(smsMessage, pairs);
+         if (pairs != null && pairs.length == 2)
+            valorize(smsMessage, pairs);
       }
       if (smsMessage.getTo() != null && !smsMessage.getTo().isEmpty() && smsMessage.getSmsSid() != null
                && !smsMessage.getSmsSid().isEmpty()

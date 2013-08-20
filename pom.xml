@@ -49,7 +49,7 @@
 			<groupId>com.twilio.sdk</groupId>
 			<artifactId>twilio-java-sdk</artifactId>
 			<version>3.3.10</version>
-			<scope>provided</scope>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- twilio faces -->
@@ -57,7 +57,7 @@
 			<groupId>org.twiliofaces</groupId>
 			<artifactId>twiliofaces</artifactId>
 			<version>1.2.4-SNAPSHOT</version>
-			<scope>provided</scope>
+			<scope>compile</scope>
 		</dependency>
 
 
@@ -78,6 +78,7 @@
 						</goals>
 						<configuration>
 							<includeJar>true</includeJar>
+							<manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
 						</configuration>
 					</execution>
 				</executions>
