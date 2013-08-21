@@ -1,5 +1,6 @@
 package org.twiliofaces.smsra;
 
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Level;
@@ -83,6 +84,11 @@ public class SmsReceivedHandler extends SimpleChannelUpstreamHandler
          e1.printStackTrace();
       }
       catch (JMSException e1)
+      {
+         // TODO Auto-generated catch block
+         e1.printStackTrace();
+      }
+      catch (UnsupportedEncodingException e1)
       {
          // TODO Auto-generated catch block
          e1.printStackTrace();
