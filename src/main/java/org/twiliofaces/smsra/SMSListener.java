@@ -63,7 +63,7 @@ public class SMSListener implements Work
       try
       {
          ServerBootstrap serverBootstrap = new ServerBootstrap(factory);
-         EchoServerHandler handler = new EchoServerHandler(endpointFactory, workManager);
+         SmsReceivedHandler handler = new SmsReceivedHandler(endpointFactory, workManager);
          serverBootstrap.getPipeline().addLast("handler", handler);
          this.serverChannel = serverBootstrap.bind(new LocalAddress("0.0.0.0"));
          // Now loop forever, waiting the end

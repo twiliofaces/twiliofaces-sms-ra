@@ -14,7 +14,7 @@
 		<inbound-resourceadapter>
 			<messageadapter>
 				<messagelistener>
-					<messagelistener-type>org.twiliofaces.smsra.SMSMessageListener</messagelistener-type>
+					<messagelistener-type>javax.jms.MessageListener</messagelistener-type>
 					<activationspec>
 						<activationspec-class>org.twiliofaces.smsra.SMSActivationSpec</activationspec-class>
 					</activationspec>

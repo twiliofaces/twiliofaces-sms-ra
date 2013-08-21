@@ -16,7 +16,7 @@ import javax.resource.spi.work.Work;
 import javax.resource.spi.work.WorkManager;
 import javax.transaction.xa.XAResource;
 
-@Connector(eisType = "udp", reauthenticationSupport = false, transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction)
+@Connector(eisType = "twiliosms-ra", reauthenticationSupport = false, transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction)
 public class SMSResourceAdapter implements ResourceAdapter
 {
 
@@ -43,12 +43,12 @@ public class SMSResourceAdapter implements ResourceAdapter
    {
       logger.info("endpoint activation");
 
-      SMSActivationSpec udpActivationSpec = (SMSActivationSpec) spec;
+      SMSActivationSpec smsActivationSpec = (SMSActivationSpec) spec;
 
       Work work = workers.get(System.getProperty("jboss.qualified.host.name"));
       if (work == null)
       {
-         work = new SMSListener(udpActivationSpec, endpointFactory,
+         work = new SMSListener(smsActivationSpec, endpointFactory,
                   workManager);
          workers.put(System.getProperty("jboss.qualified.host.name"), work);
       }

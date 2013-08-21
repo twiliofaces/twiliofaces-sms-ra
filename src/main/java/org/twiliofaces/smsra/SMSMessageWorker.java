@@ -2,23 +2,23 @@ package org.twiliofaces.smsra;
 
 import java.util.logging.Logger;
 
+import javax.jms.Message;
+import javax.jms.MessageListener;
 import javax.resource.spi.endpoint.MessageEndpoint;
 import javax.resource.spi.work.Work;
-
-import org.twiliofaces.smsra.model.SMSMessage;
 
 public class SMSMessageWorker implements Work
 {
 
    private static final Logger logger = Logger
             .getLogger(SMSMessageWorker.class.getName());
-   private SMSMessage udpMessage;
+   private Message message;
    private MessageEndpoint messageEndpoint;
 
-   public SMSMessageWorker(SMSMessage udpMessage,
+   public SMSMessageWorker(Message message,
             MessageEndpoint messageEndpoint)
    {
-      this.udpMessage = udpMessage;
+      this.message = message;
       this.messageEndpoint = messageEndpoint;
    }
 
@@ -29,9 +29,9 @@ public class SMSMessageWorker implements Work
 
    public void run()
    {
-      if (messageEndpoint instanceof SMSMessageListener)
+      if (messageEndpoint instanceof MessageListener)
       {
-         ((SMSMessageListener) messageEndpoint).onMessage(udpMessage);
+         ((MessageListener) messageEndpoint).onMessage(message);
       }
       messageEndpoint.release();
    }

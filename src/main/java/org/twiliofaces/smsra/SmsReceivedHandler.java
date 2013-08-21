@@ -5,6 +5,8 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.jms.JMSException;
+import javax.jms.MapMessage;
 import javax.resource.spi.UnavailableException;
 import javax.resource.spi.endpoint.MessageEndpointFactory;
 import javax.resource.spi.work.WorkException;
@@ -16,25 +18,24 @@ import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.channel.ExceptionEvent;
 import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.SimpleChannelUpstreamHandler;
-import org.twiliofaces.smsra.model.SMSMessage;
 import org.twiliofaces.smsra.util.SmsUtils;
 
-public class EchoServerHandler extends SimpleChannelUpstreamHandler
+public class SmsReceivedHandler extends SimpleChannelUpstreamHandler
 {
 
    private static final Logger logger = Logger.getLogger(
-            EchoServerHandler.class.getName());
+            SmsReceivedHandler.class.getName());
 
    private final AtomicLong transferredBytes = new AtomicLong();
 
    private MessageEndpointFactory endpointFactory;
    private WorkManager workManager;
 
-   public EchoServerHandler()
+   public SmsReceivedHandler()
    {
    }
 
-   public EchoServerHandler(MessageEndpointFactory endpointFactory, WorkManager workManager)
+   public SmsReceivedHandler(MessageEndpointFactory endpointFactory, WorkManager workManager)
    {
       super();
       this.endpointFactory = endpointFactory;
@@ -65,7 +66,7 @@ public class EchoServerHandler extends SimpleChannelUpstreamHandler
                "<Response></Response>" + "\n", Charset.defaultCharset());
       try
       {
-         SMSMessage smsMessage = SmsUtils.fromString(strBuffer.toString());
+         MapMessage smsMessage = SmsUtils.fromStringParams(strBuffer.toString());
 
          if (smsMessage != null)
          {
@@ -79,6 +80,11 @@ public class EchoServerHandler extends SimpleChannelUpstreamHandler
       }
       catch (WorkException e1)
       {
+         e1.printStackTrace();
+      }
+      catch (JMSException e1)
+      {
+         // TODO Auto-generated catch block
          e1.printStackTrace();
       }
       e.getChannel().write(channelNew);

@@ -1,2 +1,2 @@
 Manifest-Version: 1.0
-Dependencies: javax.faces.api, org.jboss.netty export
+Dependencies: javax.faces.api, org.jboss.netty export, javax.jms.api
