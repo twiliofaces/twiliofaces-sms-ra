@@ -8,24 +8,25 @@ Simple instructions to use:
 - add twilio-sms-ra.rar to your jboss-as-7.x/standalone/deployments
 - create a new web app, with twiliofaces, org.jboss.netty... dependencies:
 
-----
+`
 
-<?xml version="1.0" encoding="UTF-8"?>
-<jboss-deployment-structure>
-	<deployment>
-		<dependencies>
-			<module name="deployment.twilio-sms-ra-0.0.1-SNAPSHOT.rar" />
-		</dependencies>
-	</deployment>
-</jboss-deployment-structure>
-
-----
+    <?xml version="1.0" encoding="UTF-8"?>
+    <jboss-deployment-structure>
+    	<deployment>
+    		<dependencies>
+    			<module name="deployment.twilio-sms-ra-0.0.1-SNAPSHOT.rar" />
+    		</dependencies>
+    	</deployment>
+     </jboss-deployment-structure>
+`
 
 - in the WEB-INF/web.xml add http tunnel servlet:
 
------
 
-<servlet>
+
+`
+
+    <servlet>
 		<servlet-name>NettyTunnelingServlet</servlet-name>
 		<servlet-class>org.jboss.netty.channel.socket.http.HttpTunnelingServlet</servlet-class>
 		<init-param>
@@ -39,29 +40,29 @@ Simple instructions to use:
 		<servlet-name>NettyTunnelingServlet</servlet-name>
 		<url-pattern>/tunnel</url-pattern>
 	</servlet-mapping>
+	`
 	
-----
 - create a mdb wich use twilio-sms-ra adapter:
 
-----
 
-import java.util.Enumeration;
+`
 
-import javax.ejb.MessageDriven;
-import javax.jms.JMSException;
-import javax.jms.MapMessage;
-import javax.jms.Message;
-import javax.jms.MessageListener;
+    import java.util.Enumeration;
+    
+    import javax.ejb.MessageDriven;
+    import javax.jms.JMSException;
+    import javax.jms.MapMessage;
+    import javax.jms.Message;
+    import javax.jms.MessageListener;
+    
+    import org.jboss.ejb3.annotation.ResourceAdapter;
+    @ResourceAdapter("twilio-sms-ra-0.0.1-SNAPSHOT.rar")
+    @MessageDriven
+    public class SmsReceiverMDB implements MessageListener
+    {
 
-import org.jboss.ejb3.annotation.ResourceAdapter;
-
-@ResourceAdapter("twilio-sms-ra-0.0.1-SNAPSHOT.rar")
-@MessageDriven
-public class SmsReceiverMDB implements MessageListener
-{
-
-   public void onMessage(Message smsMessage)
-   {
+    public void onMessage(Message smsMessage)
+    {
       System.out.println("we received a new twilio sms message!");
       if (smsMessage instanceof MapMessage)
       {
@@ -82,12 +83,12 @@ public class SmsReceiverMDB implements MessageListener
             e1.printStackTrace();
          }
 
-      }
+    }
 
-   }
-}
+    }
+    }
 
-----
+	`
 
 
 A complete example of use:
