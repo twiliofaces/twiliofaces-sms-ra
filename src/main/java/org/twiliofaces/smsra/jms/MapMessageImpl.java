@@ -1,4 +1,4 @@
-package org.mockejb.jms;
+package org.twiliofaces.smsra.jms;
 
 import java.util.*;
 import javax.jms.*;
@@ -6,6 +6,7 @@ import javax.jms.*;
 /**
  * <code>MapMessage</code> implementation.
  * 
+ * @link http://mockejb.sourceforge.net/
  * @author Dimitar Gospodinov
  * @see javax.jms.MapMessage
  */

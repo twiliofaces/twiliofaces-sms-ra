@@ -1,11 +1,11 @@
 twilio-sms-ra
 =============
 
-This is a twilio sms resource adapter, witch enable your app to receive twilio sms using a message driven bean. 
+This is a JMS resource adapter, witch enable your application to receive twilio sms using a message driven bean. 
 
 Simple instructions to use:
 
-- add twilio-sms-ra.rar to your jboss-as-7.x/standalone/deployments
+- add twiliofaces-sms-ra.rar to your jboss-as-7.x/standalone/deployments
 - create a new web app, with twiliofaces, org.jboss.netty... dependencies:
 
 `
@@ -14,7 +14,7 @@ Simple instructions to use:
     <jboss-deployment-structure>
     	<deployment>
     		<dependencies>
-    			<module name="deployment.twilio-sms-ra-0.0.1-SNAPSHOT.rar" />
+    			<module name="deployment.twiliofaces-sms-ra-0.0.1-SNAPSHOT.rar" />
     		</dependencies>
     	</deployment>
      </jboss-deployment-structure>
@@ -42,7 +42,7 @@ Simple instructions to use:
 	</servlet-mapping>
 	`
 	
-- create a mdb wich use twilio-sms-ra adapter:
+- create a mdb wich use twiliofaces-sms-ra adapter:
 
 
 `
@@ -56,7 +56,7 @@ Simple instructions to use:
     import javax.jms.MessageListener;
     
     import org.jboss.ejb3.annotation.ResourceAdapter;
-    @ResourceAdapter("twilio-sms-ra-0.0.1-SNAPSHOT.rar")
+    @ResourceAdapter("twiliofaces-sms-ra-0.0.1-SNAPSHOT.rar")
     @MessageDriven
     public class SmsReceiverMDB implements MessageListener
     {

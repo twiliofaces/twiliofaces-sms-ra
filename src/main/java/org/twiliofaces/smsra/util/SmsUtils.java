@@ -1,3 +1,15 @@
+/*
+ * Copyright 2013 twiliofaces.org.
+ *
+ * Licensed under the Eclipse Public License version 1.0, available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ */
+/*
+ * Copyright 2013 twiliofaces.org.
+ *
+ * Licensed under the Eclipse Public License version 1.0, available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ */
 package org.twiliofaces.smsra.util;
 
 import java.io.UnsupportedEncodingException;
@@ -6,7 +18,7 @@ import java.net.URLDecoder;
 import javax.jms.JMSException;
 import javax.jms.MapMessage;
 
-import org.mockejb.jms.MapMessageImpl;
+import org.twiliofaces.smsra.jms.MapMessageImpl;
 
 public class SmsUtils
 {
@@ -37,19 +49,5 @@ public class SmsUtils
       String key = pairs[0];
       String value = URLDecoder.decode(pairs[1], "UTF-8");
       smsMessage.setString(key, value);
-   }
-
-   public static void main(String[] args)
-   {
-      String value = "%2B393922274929";
-      try
-      {
-         System.out.println(URLDecoder.decode(value, "UTF-8"));
-      }
-      catch (UnsupportedEncodingException e)
-      {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      }
    }
 }

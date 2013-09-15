@@ -1,4 +1,4 @@
-package org.mockejb.jms;
+package org.twiliofaces.smsra.jms;
 
 import java.util.*;
 import javax.jms.*;
@@ -9,6 +9,7 @@ import javax.jms.*;
  * <p>
  * Conversion between types is supported as specified in <code>javax.jms.StreamMessage</code>
  * 
+ * @link http://mockejb.sourceforge.net/
  * @author Dimitar Gospodinov
  */
 public class PrimitiveMap

@@ -1,3 +1,15 @@
+/*
+ * Copyright 2013 twiliofaces.org.
+ *
+ * Licensed under the Eclipse Public License version 1.0, available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ */
+/*
+ * Copyright 2013 twiliofaces.org.
+ *
+ * Licensed under the Eclipse Public License version 1.0, available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ */
 package org.twiliofaces.smsra;
 
 import java.util.HashMap;
@@ -16,7 +28,9 @@ import javax.resource.spi.work.Work;
 import javax.resource.spi.work.WorkManager;
 import javax.transaction.xa.XAResource;
 
-@Connector(eisType = "twiliosms-ra", reauthenticationSupport = false, transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction)
+@Connector(
+         eisType = "twiliofaces-ra", reauthenticationSupport = false,
+         transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction)
 public class SMSResourceAdapter implements ResourceAdapter
 {
 
@@ -28,7 +42,7 @@ public class SMSResourceAdapter implements ResourceAdapter
    public void start(BootstrapContext context)
             throws ResourceAdapterInternalException
    {
-      logger.info("starting resource adapter");
+      logger.info("starting twiliofaces resource adapter");
       workManager = context.getWorkManager();
       workers = new HashMap<String, Work>();
    }
@@ -38,34 +52,43 @@ public class SMSResourceAdapter implements ResourceAdapter
       logger.info("stop");
    }
 
-   public void endpointActivation(MessageEndpointFactory endpointFactory,
-            ActivationSpec spec) throws ResourceException
+   public void endpointActivation(MessageEndpointFactory messageEndpointFactory,
+            ActivationSpec activationSpec) throws ResourceException
    {
       logger.info("endpoint activation");
-
-      SMSActivationSpec smsActivationSpec = (SMSActivationSpec) spec;
-
-      Work work = workers.get(System.getProperty("jboss.qualified.host.name"));
+      String uid = getUid(activationSpec);
+      Work work = workers.get(uid);
       if (work == null)
       {
-         work = new SMSListener(smsActivationSpec, endpointFactory,
+         work = new SMSListener((SMSActivationSpec) activationSpec, messageEndpointFactory,
                   workManager);
-         workers.put(System.getProperty("jboss.qualified.host.name"), work);
+         workers.put(uid, work);
       }
 
       workManager.startWork(work);
    }
 
-   public void endpointDeactivation(MessageEndpointFactory endpointFactory,
-            ActivationSpec spec)
+   public void endpointDeactivation(MessageEndpointFactory messageEndpointFactory,
+            ActivationSpec activationSpec)
    {
       logger.info("endpoint deactivation");
-
-      SMSActivationSpec udpActivationSpec = (SMSActivationSpec) spec;
-      if (workers.containsKey(System.getProperty("jboss.qualified.host.name")))
+      String uid = getUid(activationSpec);
+      if (workers.containsKey(uid))
       {
-         workers.get(System.getProperty("jboss.qualified.host.name")).release();
+         workers.get(uid).release();
       }
+   }
+
+   private String getUid(ActivationSpec spec)
+   {
+      SMSActivationSpec smsActivationSpec = (SMSActivationSpec) spec;
+      String uid = "0.0.0.0";
+      if (smsActivationSpec.getHost() != null && !smsActivationSpec.getHost().isEmpty())
+      {
+         uid = smsActivationSpec.getHost();
+
+      }
+      return uid;
    }
 
    public XAResource[] getXAResources(ActivationSpec[] specs)
@@ -74,11 +97,6 @@ public class SMSResourceAdapter implements ResourceAdapter
       return new XAResource[0];
    }
 
-   /**
-    * Returns a hash code value for the object.
-    * 
-    * @return A hash code value for this object.
-    */
    public int hashCode()
    {
       int result = 17;
@@ -90,12 +108,6 @@ public class SMSResourceAdapter implements ResourceAdapter
       return result;
    }
 
-   /**
-    * Indicates whether some other object is equal to this one.
-    * 
-    * @param other The reference object with which to compare.
-    * @return true If this object is the same as the obj argument, false otherwise.
-    */
    public boolean equals(Object other)
    {
       if (other == null)

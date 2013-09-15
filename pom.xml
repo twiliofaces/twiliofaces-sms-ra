@@ -1,46 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ~ Copyright 2012twiliofaces.org. ~ ~ Licensed under the Eclipse Public 
+	License version 1.0, available at ~ http://www.eclipse.org/legal/epl-v10.html -->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.twiliofaces.smsra</groupId>
-	<artifactId>twilio-sms-ra</artifactId>
+	<artifactId>twiliofaces-sms-ra</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<url>http://twiliofaces.org</url>
+	<description>Twiliofaces - Resource adapter for twilio sms</description>
+
+
+	<licenses>
+		<license>
+			<name>Eclipse Public License version 1.0</name>
+			<url>http://www.eclipse.org/legal/epl-v10.html</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>fiorenzino</id>
+			<name>Fiorenzo Pizza</name>
+			<email>fiorenzino@gmail.com</email>
+		</developer>
+		<developer>
+			<id>pisi79</id>
+			<name>Samuele Pasini</name>
+			<email>samuele.pasini@gmail.com</email>
+		</developer>
+	</developers>
+
+	<prerequisites>
+		<maven>3.0</maven>
+	</prerequisites>
+
+	<scm>
+		<connection>scm:git:git://github.com/twiliofaces/twiliofaces-sms-ra.git</connection>
+		<developerConnection>scm:git:git@github.com:twiliofaces/twiliofaces-sms-ra.git</developerConnection>
+		<url>http://github.com/twiliofaces/twiliofaces-sms-ra</url>
+	</scm>
+
 	<properties>
-		<version.org.jboss.spec.javax.jms.jboss-jms-api_1.1_spec>1.0.0.Final</version.org.jboss.spec.javax.jms.jboss-jms-api_1.1_spec>
-		<version.org.jboss.ironjacamar>1.0.17.Final</version.org.jboss.ironjacamar>
-		<version.org.jboss.ejb3.ext-api>2.0.0</version.org.jboss.ejb3.ext-api>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<org.jboss.spec.javax.jms.jboss-jms-api_1.1_spec.version>1.0.0.Final</org.jboss.spec.javax.jms.jboss-jms-api_1.1_spec.version>
+		<org.jboss.ironjacamar.version>1.0.17.Final</org.jboss.ironjacamar.version>
+		<org.jboss.ejb3.ext-api.version>2.0.0</org.jboss.ejb3.ext-api.version>
 		<jboss.spec.version>1.0.1.Final</jboss.spec.version>
+		<javaee-api.version>6.0</javaee-api.version>
+		<netty.version>3.2.6.Final</netty.version>
+		<twilio-java-sdk.version>3.3.16</twilio-java-sdk.version>
+		<twiliofaces.version>1.2.4-SNAPSHOT</twiliofaces.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.jboss.ironjacamar</groupId>
 			<artifactId>ironjacamar-core-api</artifactId>
-			<version>${version.org.jboss.ironjacamar}</version>
+			<version>${org.jboss.ironjacamar.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.spec.javax.jms</groupId>
 			<artifactId>jboss-jms-api_1.1_spec</artifactId>
-			<version>${version.org.jboss.spec.javax.jms.jboss-jms-api_1.1_spec}</version>
+			<version>${org.jboss.spec.javax.jms.jboss-jms-api_1.1_spec.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.ejb3</groupId>
 			<artifactId>jboss-ejb3-ext-api</artifactId>
-			<version>${version.org.jboss.ejb3.ext-api}</version>
+			<version>${org.jboss.ejb3.ext-api.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
-			<version>6.0</version>
+			<version>${javaee-api.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.jboss.netty</groupId>
 			<artifactId>netty</artifactId>
-			<version>3.2.6.Final</version>
+			<version>${netty.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -48,7 +92,7 @@
 		<dependency>
 			<groupId>com.twilio.sdk</groupId>
 			<artifactId>twilio-java-sdk</artifactId>
-			<version>3.3.10</version>
+			<version>${twilio-java-sdk.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -56,7 +100,7 @@
 		<dependency>
 			<groupId>org.twiliofaces</groupId>
 			<artifactId>twiliofaces</artifactId>
-			<version>1.2.4-SNAPSHOT</version>
+			<version>${twiliofaces.version}</version>
 			<scope>provided</scope>
 		</dependency>
 

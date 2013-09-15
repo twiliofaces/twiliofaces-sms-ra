@@ -1,4 +1,4 @@
-package org.mockejb.jms;
+package org.twiliofaces.smsra.jms;
 
 import java.util.Enumeration;
 import java.util.Iterator;
@@ -6,6 +6,7 @@ import java.util.Iterator;
 /**
  * Enumeration for <code>Collection</code> represented with an iterator.
  * 
+ * @link http://mockejb.sourceforge.net/
  * @author Dimitar Gospodinov
  */
 public class CollectionEnumeration implements Enumeration
