@@ -22,10 +22,7 @@ Simple instructions to use:
 
 - in the WEB-INF/web.xml add http tunnel servlet:
 
-
-
 `
-
     <servlet>
 		<servlet-name>NettyTunnelingServlet</servlet-name>
 		<servlet-class>org.jboss.netty.channel.socket.http.HttpTunnelingServlet</servlet-class>
