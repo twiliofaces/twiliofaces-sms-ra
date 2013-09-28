@@ -1,4 +1,4 @@
-twilio-sms-ra
+twiliofaces-sms-ra
 =============
 
 This is a JMS resource adapter, witch enable your application to receive twilio sms using a message driven bean. 
