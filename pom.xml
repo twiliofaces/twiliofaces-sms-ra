@@ -12,7 +12,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.twiliofaces.smsra</groupId>
 	<artifactId>twiliofaces-sms-ra</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<url>http://twiliofaces.org</url>
 	<description>Twiliofaces - Resource adapter for twilio sms</description>
 
