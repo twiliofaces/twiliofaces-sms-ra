@@ -13,7 +13,7 @@
 	<groupId>org.twiliofaces.smsra</groupId>
 	<artifactId>twiliofaces-sms-ra</artifactId>
 	<packaging>rar</packaging>
-	<version>0.0.3</version>
+	<version>0.0.4-SNAPSHOT</version>
 	<url>http://twiliofaces.org</url>
 	<description>Twiliofaces - Resource adapter for twilio sms</description>
 
